@@ -89,11 +89,13 @@ const Home: React.FC = () => {
       ],
       onDidDismiss: async (ev: CustomEvent) => {
         await showLoading()
+        console.log('run mutation..')
 
         // Run the mutation
-        await createList({
+        const res = await createList({
           variables: { title: ev.detail.data.values.name },
         })
+        console.log('🚀 ~ file: Home.tsx:97 ~ onDidDismiss: ~ res', res)
 
         hideLoading()
       },
