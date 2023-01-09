@@ -13,9 +13,9 @@ import {
 import { isLiveQuery, SSELink } from '@grafbase/apollo-link'
 import { getOperationAST } from 'graphql'
 
-const GRAFBASE_API_URL = 'http://127.0.0.1:4000/graphql'
-// const GRAFBASE_API_URL =
-//   'https://grafbase-app-ionic-main-saimon24.grafbase.app/graphql'
+// const GRAFBASE_API_URL = 'http://127.0.0.1:4000/graphql'
+const GRAFBASE_API_URL =
+  'https://grafbase-app-ionic-main-saimon24.grafbase.app/graphql'
 
 // Use JWT in a real app
 // https://grafbase.com/docs/concepts/api-keys
