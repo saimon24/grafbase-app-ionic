@@ -1,11 +1,23 @@
+schema
+  @auth(
+    providers: [
+      {
+        type: jwt
+        issuer: "{{ env.ISSUER_URL }}"
+        secret: "{{ env.JWT_SECRET }}"
+      }
+    ]
+    rules: [{ allow: private }]
+  ) {
+  query: Query
+}
+
 type TodoList @model {
-  id: ID!
   title: String!
   todos: [Todo]
 }
 
 type Todo @model {
-  id: ID!
   title: String!
   notes: String
   complete: Boolean!

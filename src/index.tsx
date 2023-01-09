@@ -13,27 +13,29 @@ import {
 import { isLiveQuery, SSELink } from '@grafbase/apollo-link'
 import { getOperationAST } from 'graphql'
 
-// const GRAFBASE_API_URL = 'http://127.0.0.1:4000/graphql'
-const GRAFBASE_API_URL =
-  'https://grafbase-app-ionic-main-saimon24.grafbase.app/graphql'
+const GRAFBASE_API_URL = 'http://127.0.0.1:4000/graphql'
+// const GRAFBASE_API_URL =
+//   'https://grafbase-app-ionic-main-saimon24.grafbase.app/graphql'
 
 // Use JWT in a real app
 // https://grafbase.com/docs/concepts/api-keys
-const API_KEY =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzI3NDY4MDksImlzcyI6ImdyYWZiYXNlIiwiYXVkIjoiMDFHTlZRTkVBUkFWN0JQMTQyNUQ4WU5GMUYiLCJqdGkiOiIwMUdOVlFORUFSVjA4WjJERlZGNzBNODRTUSIsImVudiI6InByb2R1Y3Rpb24iLCJwdXJwb3NlIjoicHJvamVjdC1hcGkta2V5In0.Kqaj3-g5wSY_RwynN4lkcEfljK52fzJedRyRkX_CG9c'
+// const API_KEY =
+//   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzI3NDY4MDksImlzcyI6ImdyYWZiYXNlIiwiYXVkIjoiMDFHTlZRTkVBUkFWN0JQMTQyNUQ4WU5GMUYiLCJqdGkiOiIwMUdOVlFORUFSVjA4WjJERlZGNzBNODRTUSIsImVudiI6InByb2R1Y3Rpb24iLCJwdXJwb3NlIjoicHJvamVjdC1hcGkta2V5In0.Kqaj3-g5wSY_RwynN4lkcEfljK52fzJedRyRkX_CG9c'
+// 'x-api-key': API_KEY,
+const API_KEY = '123'
 
 export const createApolloLink = () => {
   const sseLink = new SSELink({
     uri: GRAFBASE_API_URL,
     headers: {
-      'x-api-key': API_KEY,
+      // Authorization: API_KEY,
     },
   })
 
   const httpLink = new HttpLink({
     uri: GRAFBASE_API_URL,
     headers: {
-      'x-api-key': API_KEY,
+      // Authorization: API_KEY,
     },
   })
 
