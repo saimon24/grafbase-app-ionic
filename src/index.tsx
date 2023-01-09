@@ -12,30 +12,41 @@ import {
 } from '@apollo/client'
 import { isLiveQuery, SSELink } from '@grafbase/apollo-link'
 import { getOperationAST } from 'graphql'
+import { SignJWT } from 'jose'
+
+// Example of genreating a JWT:
+// const secret = new Uint8Array(
+//   'mysupersecretk3y!'.split('').map((c) => c.charCodeAt(0)),
+// )
+
+// const getToken = () => {
+//   return new SignJWT({ sub: 'user_1234', groups: [] })
+//     .setProtectedHeader({ alg: 'HS256', typ: 'JWT' })
+//     .setIssuer('https://devdactic.com')
+//     .setIssuedAt()
+//     .setExpirationTime('2h')
+//     .sign(secret)
+// }
 
 // const GRAFBASE_API_URL = 'http://127.0.0.1:4000/graphql'
 const GRAFBASE_API_URL =
   'https://grafbase-app-ionic-main-saimon24.grafbase.app/graphql'
 
-// Use JWT in a real app
-// https://grafbase.com/docs/concepts/api-keys
-// const API_KEY =
-//   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzI3NDY4MDksImlzcyI6ImdyYWZiYXNlIiwiYXVkIjoiMDFHTlZRTkVBUkFWN0JQMTQyNUQ4WU5GMUYiLCJqdGkiOiIwMUdOVlFORUFSVjA4WjJERlZGNzBNODRTUSIsImVudiI6InByb2R1Y3Rpb24iLCJwdXJwb3NlIjoicHJvamVjdC1hcGkta2V5In0.Kqaj3-g5wSY_RwynN4lkcEfljK52fzJedRyRkX_CG9c'
-// 'x-api-key': API_KEY,
-const API_KEY = '123'
-
+// Use JWT in a real app or API Key for testing with x-api-key
+const JWT_TOKEN =
+  'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzEyMzQiLCJncm91cHMiOltdLCJpc3MiOiJodHRwczovL2RldmRhY3RpYy5jb20iLCJpYXQiOjE2NzMyNzE3MDIsImV4cCI6MTY3MzI3ODkwMn0.UTeRkRNd_e5J6rnqJmeFKN-MN9F3_PcYqp_cthsGp_E'
 export const createApolloLink = () => {
   const sseLink = new SSELink({
     uri: GRAFBASE_API_URL,
     headers: {
-      // Authorization: API_KEY,
+      authorization: JWT_TOKEN,
     },
   })
 
   const httpLink = new HttpLink({
     uri: GRAFBASE_API_URL,
     headers: {
-      // Authorization: API_KEY,
+      authorization: JWT_TOKEN,
     },
   })
 
